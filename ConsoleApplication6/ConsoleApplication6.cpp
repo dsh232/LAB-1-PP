@@ -12,9 +12,9 @@ int input_int(bool is_neg) { // создание функции на прове�
         std::cin.ignore(9999, '\n'); //игнорим 9999 символов до перевода строки.
     }
 
-    if (!is_neg && inputInt < 0)  // для проверки при чтении размера массива. (отриц. числа мимо)
+    if (!is_neg && inputInt < 0 || inputInt == 0)  // для проверки при чтении размера массива. (отриц. числа мимо)
     {
-        std::cout << "Try numbers that > or = 0. " << std::endl;
+        std::cout << "Try numbers that > 0. " << std::endl;
         return input_int(false);
     } 
 
@@ -29,13 +29,13 @@ int main()
         int length;
         std::cout << "What length of your array? " << std::endl; //cin,cout потоки выводп/ввода. std группа пространств имен
         length = input_int(false);
-        std::cout << "What numbers in your array? " << std::endl;
+        std::cout << "What elements in your array? " << std::endl;
 
         int num0 = 0; //для подсчета кол-ва нулей
 
-        int* masiv = new int(length); //Выделение памяти на динамический массив. (пример с мусором в комнате и тазиком)
+        char* masiv = new char(length); //Выделение памяти на динамический массив. (пример с мусором в комнате и тазиком)
         for (int i = 0; i < length; i++) { //ввод массива 
-            masiv[i] = input_int(true);
+            std::cin >> masiv[i];
             if (masiv[i] == 0)  num0++; // нули нули нули считаем 
         }
 
@@ -52,6 +52,8 @@ int main()
         for (int i = 0; i < length; i++) {
             std::cout << masiv[i] << " ";
         }
+
+        delete[] masiv;
 
         bool flag2 = false;
         while (flag2 == false) {
@@ -73,3 +75,5 @@ int main()
         }
     }
 }   
+
+
