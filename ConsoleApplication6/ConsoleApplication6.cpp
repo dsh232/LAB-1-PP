@@ -33,17 +33,17 @@ int main()
 
         int num0 = 0; //для подсчета кол-ва нулей
 
-        char* masiv = new char(length); //Выделение памяти на динамический массив. (пример с мусором в комнате и тазиком)
+        char* masiv = new char[length]; //Выделение памяти на динамический массив. (пример с мусором в комнате и тазиком)
         for (int i = 0; i < length; i++) { //ввод массива 
             std::cin >> masiv[i];
-            if (masiv[i] == 0)  num0++; // нули нули нули считаем 
+            if (masiv[i] == '0')  num0++; // нули нули нули считаем 
         }
 
         for (int j = 0; j < num0; j++) { //нули. каждый нолик чтобы до конца дошел
             for (int i = 1; i < length; i++) { //поход по массиву с 1 элемента
-                if (masiv[i - 1] == 0) { //перебираем, 0? меняем на i и выкидываем 0 на место i
+                if (masiv[i - 1] == '0') { //перебираем, 0? меняем на i и выкидываем 0 на место i
                     masiv[i - 1] = masiv[i];
-                    masiv[i] = 0;
+                    masiv[i] = '0';
                 }
             }
         }
@@ -52,8 +52,6 @@ int main()
         for (int i = 0; i < length; i++) {
             std::cout << masiv[i] << " ";
         }
-
-        delete[] masiv;
 
         bool flag2 = false;
         while (flag2 == false) {
@@ -73,6 +71,7 @@ int main()
                 std::cout << "Uncorrect input. Try again." << std::endl;
             }
         }
+        delete[] masiv;
     }
 }   
 
